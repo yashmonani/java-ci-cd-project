@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-app
+  namespace: default # Jenkins will replace this with dev/uat/prod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: java-app
+  template:
+    metadata:
+      labels:
+        app: java-app
+    spec:
+      containers:
+      - name: java-app
+        image: REPLACE_ME_IMAGE_TAG # Jenkins will replace this
+        ports:
+        - containerPort: 8080
