@@ -10,7 +10,7 @@ pipeline {
         IMAGE_TAG = "${BUILD_NUMBER}"
         // Make sure you added this ID in Jenkins Credentials
         KUBE_CONFIG_ID = "k8s-kubeconfig" 
-        DOCKER_CREDS_ID = "dockerhub-creds"
+        DOCKER_CREDS_ID = "docker-hub-creds"
     }
 
     stages {
