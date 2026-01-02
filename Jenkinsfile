@@ -9,7 +9,7 @@ pipeline {
         APP_NAME = "java-spring-app"
         IMAGE_TAG = "${BUILD_NUMBER}"
         // Make sure you added this ID in Jenkins Credentials
-        KUBE_CONFIG_ID = "k8s-kubeconfig" 
+        KUBE_CONFIG_ID = "my-k8s-config" 
         DOCKER_CREDS_ID = "docker-hub-creds"
     }
 
