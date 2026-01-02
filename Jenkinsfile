@@ -83,6 +83,19 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            script {
+                echo 'Cleaning up Docker images to save disk space...'
+                // Remove the specific image built in this run
+                sh "docker rmi ${DOCKER_HUB_USER}/${APP_NAME}:${IMAGE_TAG} || true"
+                sh "docker rmi ${DOCKER_HUB_USER}/${APP_NAME}:latest || true"
+                // aggressive cleanup to keep 8GB disk alive
+                sh "docker system prune -f" 
+            }
+        }
+    }
 }
 
 // Helper function to keep code clean
