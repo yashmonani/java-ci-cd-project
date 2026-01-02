@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools {
+        maven 'maven-3.9' 
+    }
     environment {
         // UPDATE THIS
         DOCKER_HUB_USER = "yashrajmonani" 
