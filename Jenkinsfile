@@ -22,13 +22,34 @@ pipeline {
             }
         }
 
-        stage('Build & Push Docker Image') {
+        // STAGE 1: Build locally (No push yet)
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Just build. No registry login needed yet.
+                    sh "docker build -t ${DOCKER_HUB_USER}/${APP_NAME}:${IMAGE_TAG} ."
+                }
+            }
+        }
+
+        // STAGE 2: Scan the local image
+        stage('Trivy Security Scan') {
+            steps {
+                script {
+                    // Scan the image we just built
+                    // --exit-code 1 means: "Stop the pipeline if you find critical bugs"
+                    sh "trivy image --severity CRITICAL --exit-code 1 --no-progress ${DOCKER_HUB_USER}/${APP_NAME}:${IMAGE_TAG}"
+                }
+            }
+        }
+
+        // STAGE 3: Push to DockerHub (Only if scan passed)
+        stage('Push Docker Image') {
             steps {
                 script {
                     docker.withRegistry('', DOCKER_CREDS_ID) {
-                        def appImage = docker.build("${DOCKER_HUB_USER}/${APP_NAME}:${IMAGE_TAG}")
-                        appImage.push()
-                        appImage.push("latest")
+                        sh "docker push ${DOCKER_HUB_USER}/${APP_NAME}:${IMAGE_TAG}"
+                        sh "docker push ${DOCKER_HUB_USER}/${APP_NAME}:latest"
                     }
                 }
             }
