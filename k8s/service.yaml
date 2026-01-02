@@ -10,4 +10,4 @@ spec:
   ports:
   - port: 80
     targetPort: 8080
-    nodePort: 30009 # careful with conflicts if deploying multiple envs
+#nodePort: 30009 # careful with conflicts if deploying multiple envs
