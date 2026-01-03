@@ -12,8 +12,7 @@ A comprehensive **DevSecOps Pipeline** that automates the deployment of a Java S
 - [Pipeline Workflow](#-pipeline-workflow)
 - [Prerequisites](#-prerequisites)
 - [Project Structure](#-project-structure)
-- [Configuration & Credentials](#-configuration--credentials)
-- [How to Run](#-how-to-run)
+
 
 ---
 
@@ -82,20 +81,3 @@ Before running this pipeline, ensure you have:
 ├── pom.xml             
 └── README.md            
 
----
-
-## 🔐 Configuration & Credentials
-You must configure the following credentials in Jenkins (**Manage Jenkins > Credentials**):
-
-| ID | Type | Description |
-| :--- | :--- | :--- |
-| `docker-creds` | Username with Password | Docker Hub Login |
-| `sonar-token` | Secret Text | SonarQube Authentication Token |
-| `kubeconfig` | Secret File | Kubernetes Config File (`~/.kube/config`) |
-
-### **Environment Variables (in Jenkinsfile)**
-You will need to update these variables at the top of your `Jenkinsfile` to match your own details:
-
-* `DOCKER_HUB_USER`: Your Docker Hub username 
-* `APP_NAME`: Name of the Docker image (e.g., `java-spring-app`)
-* `IMAGE_TAG`: The tag versioning strategy (Default: `${BUILD_NUMBER}`)
