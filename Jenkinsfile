@@ -4,7 +4,7 @@ pipeline {
         maven 'maven-3.9' 
     }
     environment {
-        // UPDATE THIS , comments will be removed after completion and v2
+        // UPDATE THIS , comments will be removed after completion and v3
         DOCKER_HUB_USER = "yashrajmonani" 
         APP_NAME = "java-spring-app"
         IMAGE_TAG = "${BUILD_NUMBER}"
