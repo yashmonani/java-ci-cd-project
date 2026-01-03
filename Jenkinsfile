@@ -48,7 +48,13 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', DOCKER_CREDS_ID) {
+                        // 1. Push the specific version (e.g., :25)
                         sh "docker push ${DOCKER_HUB_USER}/${APP_NAME}:${IMAGE_TAG}"
+                        
+                        // 2. NEW FIX: Create the 'latest' tag from the current image
+                        sh "docker tag ${DOCKER_HUB_USER}/${APP_NAME}:${IMAGE_TAG} ${DOCKER_HUB_USER}/${APP_NAME}:latest"
+                        
+                        // 3. Push the 'latest' tag
                         sh "docker push ${DOCKER_HUB_USER}/${APP_NAME}:latest"
                     }
                 }
