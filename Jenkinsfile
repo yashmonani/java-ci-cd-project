@@ -22,6 +22,25 @@ pipeline {
             }
         }
 
+        stage('SonarQube Analysis') {
+            environment {
+                // This connects to the tool we set up in Step 2.4
+                SCANNER_HOME = tool 'sonar-scanner'
+            }
+            steps {
+                withSonarQubeEnv('sonar-server') {
+                    // Run the scan
+                    sh '''
+                    $SCANNER_HOME/bin/sonar-scanner \
+                    -Dsonar.projectKey=java-spring-app \
+                    -Dsonar.projectName="Java Spring App" \
+                    -Dsonar.java.binaries=target/classes \
+                    -Dsonar.sources=src/main/java
+                    '''
+                }
+            }
+        }
+
         // STAGE 1: Build locally (No push yet)
         stage('Build Docker Image') {
             steps {
