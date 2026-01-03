@@ -36,6 +36,7 @@ graph LR
         Jenkins -->|Deploy| K8s_UAT[K8s UAT]
         K8s_UAT -->|Manual Approval| K8s_Prod[K8s Prod]
     end
+
 ## 🛠 Technologies Used
 
 ### **Application**
@@ -97,4 +98,5 @@ Before running this pipeline, ensure you have:
 ├── Jenkinsfile          # The CI/CD Pipeline Script
 ├── Dockerfile           # Multi-Stage Docker Build
 ├── pom.xml              # Maven Dependencies
+└── README.md            # Project Documentationendencies
 └── README.md            # Project Documentation
