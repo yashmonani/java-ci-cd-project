@@ -37,7 +37,7 @@ graph LR
         K8s_UAT -->|Manual Approval| K8s_Prod[K8s Prod]
     end
 
-## 🛠 Technologies Used
+## Technologies Used
 
 ### **Application**
 * **Language:** Java (Spring Boot)
