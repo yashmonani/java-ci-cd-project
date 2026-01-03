@@ -71,13 +71,31 @@ Before running this pipeline, ensure you have:
 ## 📂 Project Structure
 
 ```bash
-├── src/                 # Java Source Code
-├── k8s/                 # Kubernetes Manifests
+├── src/                
+├── k8s/                 
 │   ├── deployment-dev.yaml
 │   ├── deployment-uat.yaml
 │   ├── deployment-prod.yaml
 │   ├── service.yaml
-├── Jenkinsfile          # The CI/CD Pipeline Script
-├── Dockerfile           # Multi-Stage Docker Build
-├── pom.xml              # Maven Dependencies
-└── README.md            # Project Documentation
+├── Jenkinsfile          
+├── Dockerfile           
+├── pom.xml             
+└── README.md            
+
+---
+
+## 🔐 Configuration & Credentials
+You must configure the following credentials in Jenkins (**Manage Jenkins > Credentials**):
+
+| ID | Type | Description |
+| :--- | :--- | :--- |
+| `docker-creds` | Username with Password | Docker Hub Login |
+| `sonar-token` | Secret Text | SonarQube Authentication Token |
+| `kubeconfig` | Secret File | Kubernetes Config File (`~/.kube/config`) |
+
+### **Environment Variables (in Jenkinsfile)**
+You will need to update these variables at the top of your `Jenkinsfile` to match your own details:
+
+* `DOCKER_HUB_USER`: Your Docker Hub username 
+* `APP_NAME`: Name of the Docker image (e.g., `java-spring-app`)
+* `IMAGE_TAG`: The tag versioning strategy (Default: `${BUILD_NUMBER}`)
