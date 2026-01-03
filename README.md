@@ -38,3 +38,19 @@ graph LR
         Jenkins -->|Deploy| K8s_UAT[K8s UAT]
         K8s_UAT -->|Manual Approval| K8s_Prod[K8s Prod]
     end
+## 🛠 Technologies Used
+
+### **Application**
+* **Language:** Java (Spring Boot)
+* **Build Tool:** Maven
+* **Container:** Docker (Multi-Stage Build)
+
+### **DevOps Infrastructure**
+* **CI/CD Server:** Jenkins
+* **Orchestration:** Kubernetes (Self-Managed Cluster)
+* **Artifact Registry:** Docker Hub
+* **Infrastructure:** AWS EC2 (RedHat/Linux)
+
+### **Security & Quality**
+* **SonarQube:** Static Code Analysis (Bugs, Code Smells, Vulnerabilities)
+* **Trivy:** Container Image Scanning (CVE Detection)
